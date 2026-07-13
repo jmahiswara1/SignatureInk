@@ -28,7 +28,7 @@ export function Hero() {
 
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
-            href="https://app-signatureink.vercel.app/editor"
+            href="https://app-signatureink.vercel.app"
             className="inline-flex items-center justify-center px-8 py-4 text-sm font-mono uppercase tracking-[0.15em] bg-foreground text-background hover:bg-muted-foreground transition-colors"
           >
             Start Signing →
