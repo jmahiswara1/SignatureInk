@@ -222,15 +222,37 @@ export function useCanvas(options: UseCanvasOptions) {
     [options.inkSettings, redrawCanvas, saveState]
   );
 
+  const scaleStrokes = useCallback((oldWidth: number, oldHeight: number, newWidth: number, newHeight: number) => {
+    if (oldWidth === 0 || oldHeight === 0) return;
+    const scaleX = newWidth / oldWidth;
+    const scaleY = newHeight / oldHeight;
+
+    strokes.current = strokes.current.map(stroke => ({
+      ...stroke,
+      points: stroke.points.map(point => ({
+        ...point,
+        x: point.x * scaleX,
+        y: point.y * scaleY,
+      })),
+    }));
+  }, []);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    const oldWidth = canvas.width;
+    const oldHeight = canvas.height;
+
+    if (oldWidth !== options.width || oldHeight !== options.height) {
+      scaleStrokes(oldWidth, oldHeight, options.width, options.height);
+    }
 
     canvas.width = options.width;
     canvas.height = options.height;
 
     redrawCanvas();
-  }, [options.width, options.height, redrawCanvas]);
+  }, [options.width, options.height, redrawCanvas, scaleStrokes]);
 
   return {
     canvasRef,
