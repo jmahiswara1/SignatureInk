@@ -10,7 +10,7 @@ interface TemplatesProps {
 export function Templates({ onLoadTemplate }: TemplatesProps) {
   return (
     <div className="space-y-4">
-      <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-zinc-400">
+      <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-muted-foreground">
         Templates
       </h3>
 
@@ -19,7 +19,7 @@ export function Templates({ onLoadTemplate }: TemplatesProps) {
           <button
             key={template.id}
             onClick={() => onLoadTemplate(template.strokes)}
-            className="w-full px-3 py-2 text-xs font-mono uppercase tracking-[0.15em] border border-zinc-700 text-zinc-400 hover:text-white hover:border-white transition-colors text-left"
+            className="w-full px-3 py-2 text-xs font-mono uppercase tracking-[0.15em] border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-colors text-left"
           >
             {template.name}
           </button>

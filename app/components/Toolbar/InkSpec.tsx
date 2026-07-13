@@ -10,20 +10,20 @@ interface InkSpecProps {
 export function InkSpec({ settings, onChange }: InkSpecProps) {
   return (
     <div className="space-y-4">
-      <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-zinc-400">
+      <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-muted-foreground">
         Ink Specification
       </h3>
 
       <div className="space-y-3">
         <div className="space-y-1">
-          <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+          <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
             Color
           </label>
           <div className="flex gap-2">
             {['#000000', '#1a1a1a', '#333333', '#666666', '#999999'].map((color) => (
               <button
                 key={color}
-                className="w-6 h-6 border border-zinc-700 hover:border-white transition-colors"
+                className="w-6 h-6 border border-border hover:border-foreground transition-colors"
                 style={{ backgroundColor: color }}
                 onClick={() => onChange({ ...settings, color })}
               />
@@ -32,7 +32,7 @@ export function InkSpec({ settings, onChange }: InkSpecProps) {
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+          <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
             Width: {settings.width}px
           </label>
           <input
@@ -42,12 +42,12 @@ export function InkSpec({ settings, onChange }: InkSpecProps) {
             step="0.5"
             value={settings.width}
             onChange={(e) => onChange({ ...settings, width: parseFloat(e.target.value) })}
-            className="w-full h-1 bg-zinc-800 appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-white"
+            className="w-full h-1 bg-border appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-foreground"
           />
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+          <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
             Opacity: {Math.round(settings.opacity * 100)}%
           </label>
           <input
@@ -57,12 +57,12 @@ export function InkSpec({ settings, onChange }: InkSpecProps) {
             step="0.1"
             value={settings.opacity}
             onChange={(e) => onChange({ ...settings, opacity: parseFloat(e.target.value) })}
-            className="w-full h-1 bg-zinc-800 appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-white"
+            className="w-full h-1 bg-border appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-foreground"
           />
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+          <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
             Smoothing: {Math.round(settings.smoothing * 100)}%
           </label>
           <input
@@ -72,7 +72,7 @@ export function InkSpec({ settings, onChange }: InkSpecProps) {
             step="0.1"
             value={settings.smoothing}
             onChange={(e) => onChange({ ...settings, smoothing: parseFloat(e.target.value) })}
-            className="w-full h-1 bg-zinc-800 appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-white"
+            className="w-full h-1 bg-border appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-foreground"
           />
         </div>
 
@@ -82,9 +82,9 @@ export function InkSpec({ settings, onChange }: InkSpecProps) {
             id="pressure"
             checked={settings.pressureSensitivity}
             onChange={(e) => onChange({ ...settings, pressureSensitivity: e.target.checked })}
-            className="w-3 h-3 border border-zinc-700 bg-transparent checked:bg-white"
+            className="w-3 h-3 border border-border bg-transparent checked:bg-foreground"
           />
-          <label htmlFor="pressure" className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+          <label htmlFor="pressure" className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
             Pressure Sensitivity
           </label>
         </div>

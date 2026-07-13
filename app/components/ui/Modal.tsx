@@ -44,12 +44,12 @@ export function Modal({
         onClick={onClose}
       />
 
-      <div className="relative border border-zinc-700 bg-black p-6 w-full max-w-sm mx-4">
+      <div className="relative border border-border bg-background p-6 w-full max-w-sm mx-4">
         <h2 className="text-base font-mono uppercase tracking-[0.2em] text-white mb-2">
           {title}
         </h2>
 
-        <p className="text-sm font-mono text-zinc-400 mb-6">
+        <p className="text-sm font-mono text-muted-foreground mb-6">
           {description}
         </p>
 
@@ -57,7 +57,7 @@ export function Modal({
           {variant === 'confirm' && (
             <button
               onClick={onClose}
-              className="flex-1 px-4 py-2.5 text-xs font-mono uppercase tracking-[0.15em] border border-zinc-700 text-zinc-400 hover:text-white hover:border-white transition-colors"
+              className="flex-1 px-4 py-2.5 text-xs font-mono uppercase tracking-[0.15em] border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
             >
               {cancelLabel}
             </button>
@@ -70,8 +70,8 @@ export function Modal({
             }}
             className={`px-4 py-2.5 text-xs font-mono uppercase tracking-[0.15em] transition-colors ${
               variant === 'confirm'
-                ? 'flex-1 bg-white text-black hover:bg-zinc-200'
-                : 'w-full bg-white text-black hover:bg-zinc-200'
+                ? 'flex-1 bg-foreground text-background hover:bg-muted-foreground'
+                : 'w-full bg-foreground text-background hover:bg-muted-foreground'
             }`}
           >
             {confirmLabel}

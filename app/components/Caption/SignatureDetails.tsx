@@ -29,15 +29,15 @@ export function SignatureDetails({ caption, onChange, showPreview, onTogglePrevi
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-zinc-400">
+        <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-muted-foreground">
           Caption Details
         </h3>
         <button
           onClick={onTogglePreview}
           className={`px-3 py-1.5 text-xs font-mono uppercase tracking-[0.1em] border transition-all ${
             showPreview
-              ? 'bg-white text-black border-white'
-              : 'bg-transparent text-zinc-400 border-zinc-600 hover:bg-zinc-800 hover:text-white hover:border-white'
+              ? 'bg-foreground text-background border-foreground'
+              : 'bg-transparent text-muted-foreground border-border hover:bg-muted hover:text-foreground hover:border-foreground'
           }`}
         >
           Preview {showPreview ? 'ON' : 'OFF'}
@@ -46,7 +46,7 @@ export function SignatureDetails({ caption, onChange, showPreview, onTogglePrevi
 
       <div className="space-y-3">
         <div className="space-y-1">
-          <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+          <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
             Name
           </label>
           <input
@@ -54,12 +54,12 @@ export function SignatureDetails({ caption, onChange, showPreview, onTogglePrevi
             value={caption.name}
             onChange={(e) => onChange({ ...caption, name: e.target.value })}
             placeholder="John Doe"
-            className="w-full px-3 py-2 text-sm font-mono bg-transparent border border-zinc-700 text-white placeholder-zinc-600 focus:outline-none focus:border-white"
+            className="w-full px-3 py-2 text-sm font-mono bg-transparent border border-border text-foreground placeholder-muted focus:outline-none focus:border-foreground"
           />
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+          <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
             Title
           </label>
           <input
@@ -67,24 +67,24 @@ export function SignatureDetails({ caption, onChange, showPreview, onTogglePrevi
             value={caption.title}
             onChange={(e) => onChange({ ...caption, title: e.target.value })}
             placeholder="Software Engineer"
-            className="w-full px-3 py-2 text-sm font-mono bg-transparent border border-zinc-700 text-white placeholder-zinc-600 focus:outline-none focus:border-white"
+            className="w-full px-3 py-2 text-sm font-mono bg-transparent border border-border text-foreground placeholder-muted focus:outline-none focus:border-foreground"
           />
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+          <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
             Date
           </label>
           <input
             type="date"
             value={caption.date}
             onChange={(e) => onChange({ ...caption, date: e.target.value })}
-            className="w-full px-3 py-2 text-sm font-mono bg-transparent border border-zinc-700 text-white focus:outline-none focus:border-white"
+            className="w-full px-3 py-2 text-sm font-mono bg-transparent border border-border text-foreground focus:outline-none focus:border-foreground"
           />
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+          <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
             Notes
           </label>
           <textarea
@@ -92,12 +92,12 @@ export function SignatureDetails({ caption, onChange, showPreview, onTogglePrevi
             onChange={(e) => onChange({ ...caption, notes: e.target.value })}
             placeholder="Additional notes..."
             rows={3}
-            className="w-full px-3 py-2 text-sm font-mono bg-transparent border border-zinc-700 text-white placeholder-zinc-600 focus:outline-none focus:border-white resize-none"
+            className="w-full px-3 py-2 text-sm font-mono bg-transparent border border-border text-foreground placeholder-muted focus:outline-none focus:border-foreground resize-none"
           />
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+          <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
             Alignment
           </label>
           <div className="flex gap-1">
@@ -107,8 +107,8 @@ export function SignatureDetails({ caption, onChange, showPreview, onTogglePrevi
                 onClick={() => onChange({ ...caption, align: option.value })}
                 className={`flex-1 px-2 py-1.5 text-xs font-mono uppercase tracking-[0.1em] border transition-colors ${
                   caption.align === option.value
-                    ? 'border-white text-white'
-                    : 'border-zinc-700 text-zinc-400 hover:text-white hover:border-white'
+                    ? 'border-foreground text-foreground'
+                    : 'border-border text-muted-foreground hover:text-foreground hover:border-foreground'
                 }`}
               >
                 {option.label}
@@ -120,7 +120,7 @@ export function SignatureDetails({ caption, onChange, showPreview, onTogglePrevi
         {caption.align === 'manual' && (
           <div className="flex gap-2">
             <div className="flex-1 space-y-1">
-              <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+              <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
                 X
               </label>
               <input
@@ -138,11 +138,11 @@ export function SignatureDetails({ caption, onChange, showPreview, onTogglePrevi
                     onChange({ ...caption, offsetX: 0 });
                   }
                 }}
-                className="w-full px-3 py-2 text-sm font-mono bg-transparent border border-zinc-700 text-white focus:outline-none focus:border-white"
+                className="w-full px-3 py-2 text-sm font-mono bg-transparent border border-border text-foreground focus:outline-none focus:border-foreground"
               />
             </div>
             <div className="flex-1 space-y-1">
-              <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+              <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
                 Y
               </label>
               <input
@@ -160,20 +160,20 @@ export function SignatureDetails({ caption, onChange, showPreview, onTogglePrevi
                     onChange({ ...caption, offsetY: 0 });
                   }
                 }}
-                className="w-full px-3 py-2 text-sm font-mono bg-transparent border border-zinc-700 text-white focus:outline-none focus:border-white"
+                className="w-full px-3 py-2 text-sm font-mono bg-transparent border border-border text-foreground focus:outline-none focus:border-foreground"
               />
             </div>
           </div>
         )}
 
         <div className="space-y-1">
-          <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+          <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
             Font
           </label>
           <select
             value={caption.font}
             onChange={(e) => onChange({ ...caption, font: e.target.value as CaptionFont })}
-            className="w-full px-3 py-2 text-sm font-mono bg-black border border-zinc-700 text-white focus:outline-none focus:border-white"
+            className="w-full px-3 py-2 text-sm font-mono bg-background border border-border text-foreground focus:outline-none focus:border-foreground"
           >
             {FONT_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
@@ -184,7 +184,7 @@ export function SignatureDetails({ caption, onChange, showPreview, onTogglePrevi
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+          <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
             Font Size: {caption.fontSize}px
           </label>
           <input
@@ -193,7 +193,7 @@ export function SignatureDetails({ caption, onChange, showPreview, onTogglePrevi
             max="24"
             value={caption.fontSize}
             onChange={(e) => onChange({ ...caption, fontSize: parseInt(e.target.value) })}
-            className="w-full h-1 bg-zinc-800 appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-white"
+            className="w-full h-1 bg-border appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-foreground"
           />
         </div>
       </div>

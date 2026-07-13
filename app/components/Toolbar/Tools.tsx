@@ -27,7 +27,7 @@ export function Tools({
 }: ToolsProps) {
   return (
     <div className="space-y-4">
-      <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-zinc-400">
+      <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-muted-foreground">
         Tools
       </h3>
 
@@ -36,14 +36,14 @@ export function Tools({
           <button
             onClick={onUndo}
             disabled={!canUndo}
-            className="flex-1 px-3 py-2 text-xs font-mono uppercase tracking-[0.15em] border border-zinc-700 text-zinc-400 hover:text-white hover:border-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="flex-1 px-3 py-2 text-xs font-mono uppercase tracking-[0.15em] border border-border text-muted-foreground hover:text-foreground hover:border-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
             Undo
           </button>
           <button
             onClick={onRedo}
             disabled={!canRedo}
-            className="flex-1 px-3 py-2 text-xs font-mono uppercase tracking-[0.15em] border border-zinc-700 text-zinc-400 hover:text-white hover:border-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="flex-1 px-3 py-2 text-xs font-mono uppercase tracking-[0.15em] border border-border text-muted-foreground hover:text-foreground hover:border-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
             Redo
           </button>
@@ -51,22 +51,22 @@ export function Tools({
 
         <button
           onClick={onClear}
-          className="w-full px-3 py-2 text-xs font-mono uppercase tracking-[0.15em] border border-zinc-700 text-zinc-400 hover:text-white hover:border-white transition-colors"
+          className="w-full px-3 py-2 text-xs font-mono uppercase tracking-[0.15em] border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
         >
           Clear Canvas
         </button>
 
         <div className="space-y-1">
-          <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+          <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
             Paper Theme
           </label>
           <div className="flex gap-2">
             <button
               onClick={() => onThemeChange('light')}
-              className={`flex-1 px-3 py-2 text-xs font-mono uppercase tracking-[0.15em] border transition-colors ${
+                className={`flex-1 px-3 py-2 text-xs font-mono uppercase tracking-[0.15em] border transition-colors ${
                 theme === 'light'
-                  ? 'border-white text-white'
-                  : 'border-zinc-700 text-zinc-400 hover:text-white hover:border-white'
+                  ? 'border-foreground text-foreground'
+                  : 'border-border text-muted-foreground hover:text-foreground hover:border-foreground'
               }`}
             >
               Light
@@ -75,8 +75,8 @@ export function Tools({
               onClick={() => onThemeChange('dark')}
               className={`flex-1 px-3 py-2 text-xs font-mono uppercase tracking-[0.15em] border transition-colors ${
                 theme === 'dark'
-                  ? 'border-white text-white'
-                  : 'border-zinc-700 text-zinc-400 hover:text-white hover:border-white'
+                  ? 'border-foreground text-foreground'
+                  : 'border-border text-muted-foreground hover:text-foreground hover:border-foreground'
               }`}
             >
               Dark
@@ -85,7 +85,7 @@ export function Tools({
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-mono uppercase tracking-[0.15em] text-zinc-500">
+          <label className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
             Drawing Guides
           </label>
           <div className="flex gap-1">
@@ -95,8 +95,8 @@ export function Tools({
                 onClick={() => onGuidesChange(guide)}
                 className={`flex-1 px-2 py-1.5 text-xs font-mono uppercase tracking-[0.1em] border transition-colors ${
                   showGuides === guide
-                    ? 'border-white text-white'
-                    : 'border-zinc-700 text-zinc-400 hover:text-white hover:border-white'
+                    ? 'border-foreground text-foreground'
+                    : 'border-border text-muted-foreground hover:text-foreground hover:border-foreground'
                 }`}
               >
                 {guide}
