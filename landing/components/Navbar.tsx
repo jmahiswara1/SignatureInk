@@ -19,7 +19,7 @@ export function Navbar() {
               Features
             </a>
             <Link
-              href="https://signatureink.vercel.app/editor"
+              href="https://app-signatureink.vercel.app/editor"
               className="text-xs font-mono uppercase tracking-[0.1em] px-4 py-2 bg-foreground text-background hover:bg-muted-foreground transition-colors"
             >
               Launch App →
