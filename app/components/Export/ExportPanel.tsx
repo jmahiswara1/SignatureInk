@@ -1,14 +1,26 @@
 'use client';
 
+import { useState } from 'react';
 import { ExportOptions, ExportFormat } from '@/lib/types';
 
 interface ExportPanelProps {
   options: ExportOptions;
   onChange: (options: ExportOptions) => void;
   onExport: () => void;
+  onCopy: () => Promise<boolean>;
 }
 
-export function ExportPanel({ options, onChange, onExport }: ExportPanelProps) {
+export function ExportPanel({ options, onChange, onExport, onCopy }: ExportPanelProps) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    const success = await onCopy();
+    if (success) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
   return (
     <div className="space-y-4">
       <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-muted-foreground">
@@ -104,6 +116,14 @@ export function ExportPanel({ options, onChange, onExport }: ExportPanelProps) {
           className="w-full px-4 py-2.5 text-xs font-mono uppercase tracking-[0.2em] bg-foreground text-background hover:bg-muted-foreground transition-colors"
         >
           Export {options.format.toUpperCase()}
+        </button>
+
+        <button
+          onClick={handleCopy}
+          disabled={options.format === 'pdf'}
+          className="w-full px-4 py-2.5 text-xs font-mono uppercase tracking-[0.2em] border border-border text-muted-foreground hover:text-foreground hover:border-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+        >
+          {copied ? 'Copied!' : `Copy ${options.format.toUpperCase()}`}
         </button>
       </div>
     </div>

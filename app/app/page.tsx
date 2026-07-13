@@ -12,7 +12,7 @@ import { ThemeSelector } from '@/components/ThemeSelector';
 import { InkSettings, CaptionDetails, ExportOptions, PaperTheme, Point } from '@/lib/types';
 import { DEFAULT_INK_SETTINGS, DEFAULT_CAPTION, DEFAULT_EXPORT_OPTIONS } from '@/lib/types';
 import { loadSignatureData, saveSignatureData } from '@/lib/storage';
-import { exportSignature } from '@/lib/export';
+import { exportSignature, copySignatureToClipboard } from '@/lib/export';
 import { useCanvas } from '@/hooks/useCanvas';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useCanvasSize } from '@/hooks/useCanvasSize';
@@ -213,6 +213,20 @@ export default function Home() {
     await exportSignature(canvas, exportOptions, theme, exportOptions.withCaption ? caption : undefined);
   };
 
+  const handleCopy = async (): Promise<boolean> => {
+    const canvas = canvasRef.current;
+    if (!canvas) return false;
+    if (exportOptions.format === 'pdf') return false;
+
+    return await copySignatureToClipboard(
+      canvas,
+      exportOptions.format as 'png' | 'jpg',
+      exportOptions,
+      theme,
+      exportOptions.withCaption ? caption : undefined
+    );
+  };
+
   const handleClearClick = () => {
     setShowClearConfirm(true);
   };
@@ -354,6 +368,7 @@ export default function Home() {
                   options={exportOptions}
                   onChange={setExportOptions}
                   onExport={handleExportClick}
+                  onCopy={handleCopy}
                 />
               </div>
             </div>

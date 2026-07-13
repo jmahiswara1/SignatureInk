@@ -1,13 +1,13 @@
 import { jsPDF } from 'jspdf';
 import { ExportOptions, PaperTheme, CaptionDetails } from './types';
 
-export async function exportSignature(
+function createExportCanvas(
   canvas: HTMLCanvasElement,
   options: ExportOptions,
   theme: PaperTheme,
   caption?: CaptionDetails
-): Promise<void> {
-  const { format, withBackground, withCaption, quality, scale } = options;
+): HTMLCanvasElement {
+  const { withBackground, withCaption, scale } = options;
 
   const exportCanvas = document.createElement('canvas');
   const ctx = exportCanvas.getContext('2d')!;
@@ -57,6 +57,18 @@ export async function exportSignature(
     }
   }
 
+  return exportCanvas;
+}
+
+export async function exportSignature(
+  canvas: HTMLCanvasElement,
+  options: ExportOptions,
+  theme: PaperTheme,
+  caption?: CaptionDetails
+): Promise<void> {
+  const { format, quality } = options;
+  const exportCanvas = createExportCanvas(canvas, options, theme, caption);
+
   switch (format) {
     case 'png':
       downloadCanvas(exportCanvas, 'signature.png', 'image/png');
@@ -67,6 +79,33 @@ export async function exportSignature(
     case 'pdf':
       exportPDF(exportCanvas);
       break;
+  }
+}
+
+export async function copySignatureToClipboard(
+  canvas: HTMLCanvasElement,
+  format: 'png' | 'jpg',
+  options: ExportOptions,
+  theme: PaperTheme,
+  caption?: CaptionDetails
+): Promise<boolean> {
+  try {
+    const exportCanvas = createExportCanvas(canvas, options, theme, caption);
+    const mimeType = format === 'png' ? 'image/png' : 'image/jpeg';
+
+    const blob = await new Promise<Blob | null>((resolve) => {
+      exportCanvas.toBlob(resolve, mimeType, options.quality);
+    });
+
+    if (!blob) return false;
+
+    await navigator.clipboard.write([
+      new ClipboardItem({ [mimeType]: blob }),
+    ]);
+
+    return true;
+  } catch {
+    return false;
   }
 }
 
